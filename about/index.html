@@ -8,15 +8,16 @@
         sessionStorage.removeItem('ansyn-page-transition');
       } catch { /* Direct entry also works when storage is unavailable. */ }
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || new URLSearchParams(location.search).get('motion') === 'reduce';
-      if (!reduced) {
-        const root = document.documentElement;
-        const handoff = pending && pending.url === location.href && Date.now() - pending.at < 20000;
+      const root = document.documentElement;
+      const reloading = performance.getEntriesByType('navigation')[0]?.type === 'reload';
+      const handoff = !reloading && pending && pending.url === location.href && Date.now() - pending.at < 20000;
+      if (!reduced && (!root.hasAttribute('data-home-page') || handoff)) {
         root.dataset.transitionIncoming = '';
         root.dataset.transitionTitle = handoff
           ? String(pending.title).slice(0, 40)
           : (root.lang === 'zh-CN' ? root.dataset.pageNameZh : root.dataset.pageNameEn);
         if (handoff && pending.keyboard) root.dataset.transitionKeyboard = '';
-        // Every route has an entry curtain, including direct visits and refreshes.
+        // Home enters with a curtain only after navigation from another page.
         // Fail open if a module cannot load.
         setTimeout(() => {
           if (!root.hasAttribute('data-transition-incoming')) return;
