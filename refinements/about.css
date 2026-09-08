@@ -1,0 +1,235 @@
+/* About: a complete opening, then one KOSX story with two documentary frames. */
+.about-page {
+  --about-gutter: clamp(24px, 5vw, 96px);
+  --about-section: clamp(72px, 8vw, 120px);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.about-page .about-wide,
+.about-page .about-medium {
+  max-width: 1600px;
+  padding-inline: var(--about-gutter);
+}
+
+.about-page .about-light { background: var(--paper); }
+
+.about-page .about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  min-height: 100svh;
+  box-sizing: border-box;
+  column-gap: clamp(40px, 6vw, 96px);
+  padding-block: clamp(108px, 13svh, 148px) 48px;
+}
+
+.about-page .about-eyebrow {
+  margin: 0 0 24px;
+  color: #696969;
+  font: 400 12px/1.5 var(--sans);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.about-page .about-eyebrow::before { content: ''; display: inline-block; width: 22px; height: 2px; margin-right: 12px; vertical-align: middle; background: #3164ff; }
+.about-page .chapter-dot { border-color: #3164ff; background: #3164ff; }
+.about-page .about-number,.about-page .about-photo-number { color: #2554df; }
+.about-page .about-rule { position: relative; }
+.about-page .about-rule::before { content: ''; position: absolute; left: 0; top: 0; width: 36px; height: 1px; background: #3164ff; }
+@media (min-width: 900px) and (min-height: 620px) {
+  .about-page .about-practices { min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-block: 100px 64px; }
+}
+
+.about-page .about-intro h1 {
+  font-size: clamp(44px, 5.05vw, 78px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.055em;
+}
+
+.about-page .about-intro h1 span { animation: none; }
+
+.about-page .about-intro-copy {
+  max-width: 42ch;
+  padding: 0 0 3px;
+  font: 400 15px/1.75 var(--sans);
+  color: #505050;
+}
+
+.about-page .about-intro-copy p:last-child { margin-bottom: 0; }
+.about-page :is(.about-title-block,.about-intro-copy) { margin-bottom: 16svh; }
+
+.about-page .about-chapter-nav { grid-column: 1/-1; display: flex; gap: 40px; padding-top: 28px; border-top: 1px solid #c3d1f5; }
+.about-chapter-nav a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: #565656; font: 13px/1.5 var(--sans); transition: color 240ms; }
+.chapter-dot { width: 5px; height: 5px; border: 1px solid #777; border-radius: 50%; transition: width 300ms cubic-bezier(.19,1,.22,1), background 240ms, border-color 240ms; }
+.about-chapter-nav a:is(:hover,:focus-visible) { color: #2554df; }
+.about-chapter-nav a:is(:hover,:focus-visible) .chapter-dot { width: 20px; background: #3164ff; border-color: #3164ff; }
+.about-chapter-nav a:focus-visible { outline: 2px solid #3164ff; outline-offset: 5px; }
+.about-page .about-practice-story { display: flex; flex-direction: column; justify-content: center; min-height: 100svh; padding-block: clamp(48px,7svh,80px); scroll-margin-top: 70px; }
+
+.about-page .about-photo-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  padding-top: 0;
+  align-items: start;
+}
+
+.about-page .about-photo-section .about-image-window {
+  display: block;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f0f0ee;
+}
+
+.about-page .about-photo-section .about-image-window img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: auto;
+}
+
+.about-page .about-field-photo .about-image-window img { object-position: 50% 54%; }
+
+.about-page figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  font: 400 12px/1.5 var(--sans);
+  color: #696969;
+}
+
+.about-page .about-photo-number { font: 400 11px/1.5 var(--mono); }
+
+.about-page .about-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(36px, 6vw, 96px);
+  align-items: start;
+  padding: 0 0 32px;
+}
+
+.about-page .about-chapter .about-eyebrow { margin-bottom: 20px; }
+.about-page .about-chapter h2 { font-size: clamp(28px, 2.5vw, 36px); line-height: 1.25; }
+.about-page .about-chapter-copy { max-width: 56ch; }
+.about-page .about-chapter-copy p { color: #505050; font-family: var(--sans); }
+.about-page .about-chapter-copy p { margin-top: 0; font-size: 14px; line-height: 1.7; }
+.about-page .about-chapter-copy p:last-of-type { margin-bottom: 10px; }
+
+.about-page .about-practices {
+  padding-block: clamp(20px, 3vw, 48px) var(--about-section);
+  scroll-margin-top: 120px;
+}
+
+.about-page .about-practices > h2 {
+  margin-bottom: clamp(36px, 4.5vw, 64px);
+  font-size: clamp(28px, 2.5vw, 36px);
+  line-height: 1.25;
+}
+
+.about-page .about-practice-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 76px);
+}
+
+.about-page .about-practice-grid article { display: flex; flex-direction: column; min-width: 0; }
+.about-page .about-number { padding-bottom: 20px; }
+.about-page .about-rule { background: #d1d1d1; }
+
+.about-page .about-practice-grid h3 {
+  margin-block: 28px 24px;
+  font-size: clamp(22px, 1.9vw, 27px);
+  line-height: 1.35;
+  letter-spacing: -.025em;
+}
+
+.about-page .about-practice-grid p {
+  margin-bottom: 24px;
+  color: #505050;
+  font: 400 15px/1.8 var(--sans);
+}
+
+.about-page .about-inline-link {
+  min-height: 44px;
+  max-width: 100%;
+  width: fit-content;
+  padding-block: 9px;
+  gap: 0;
+  color: var(--ink);
+  font: 400 14px/1.5 var(--sans);
+  border-bottom: 1px solid #b5b5b5;
+  text-decoration: none;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.about-page .about-practice-grid .about-inline-link { margin-top: auto; }
+.about-page .about-inline-link:hover { color: #2554df; border-bottom-color: #3164ff; }
+.about-page .about-inline-link:active { color: #696969; }
+.about-page .about-inline-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+
+html[lang="zh-CN"] .about-page { font-family: var(--cjk); }
+html[lang="zh-CN"] .about-page .about-eyebrow { font-family: var(--cjk); letter-spacing: .02em; }
+html[lang="zh-CN"] .about-page .about-intro h1 {
+  font-family: var(--cjk);
+  font-size: clamp(38px, 4.45vw, 64px);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -.035em;
+}
+html[lang="zh-CN"] .about-page .about-intro-copy { font-size: 16px; max-width: 26em; }
+html[lang="zh-CN"] .about-page :is(.about-intro-copy, .about-chapter-copy p, .about-practice-grid p, .about-inline-link, figcaption) { font-family: var(--cjk); }
+html[lang="zh-CN"] .about-page :is(.about-chapter h2, .about-practices > h2) {
+  font-family: var(--cjk);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+html[lang="zh-CN"] .about-page .about-practice-grid h3 { font-size: 24px; letter-spacing: 0; }
+html[lang="zh-CN"] .about-page .about-practice-grid p { font-size: 16px; line-height: 1.85; }
+
+@media (max-width: 1000px) {
+  .about-page .about-intro { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 36px; }
+  .about-page .about-intro h1 { font-size: clamp(42px, 5.2vw, 58px); }
+  .about-page .about-intro-copy { font-size: 14px; }
+  .about-page .about-photo-section { gap: 18px; }
+  .about-page .about-practice-grid { gap: 28px; }
+}
+
+@media (max-width: 760px) {
+  .about-page .about-intro { grid-template-columns: 1fr; grid-template-rows: auto; min-height: 0; padding-block: 132px 48px; gap: 32px; }
+  .about-page :is(.about-title-block,.about-intro-copy) { margin-bottom: 0; }
+  .about-page .about-intro h1 { font-size: clamp(42px, 7.5vw, 58px); }
+  .about-page .about-intro-copy { max-width: 48ch; font-size: 15px; }
+  .about-page .about-photo-section { grid-template-columns: 1fr; gap: 28px; }
+  .about-page .about-photo-section .about-image-window { height: auto; }
+  .about-page .about-chapter-nav { flex-wrap: wrap; gap: 12px 28px; padding-top: 20px; }
+  .about-page .about-practice-story { min-height: 0; padding-block: 32px 64px; }
+  .about-page .about-chapter { grid-template-columns: 1fr; gap: 26px; }
+  .about-page .about-chapter h2 { margin: 0; }
+  .about-page .about-practice-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-page .about-practice-grid article { display: block; }
+  .about-page .about-practice-grid p { max-width: 56ch; }
+  .about-page .about-practice-grid h3 { margin-block: 24px 18px; }
+  html[lang="zh-CN"] .about-page .about-intro h1 { font-size: clamp(38px, 6.5vw, 48px); }
+}
+@media (min-width: 761px) and (max-height: 800px) {
+  .about-page .about-practice-story { padding-block: 32px; }
+  .about-page .about-chapter { padding-bottom: 24px; }
+  .about-page .about-photo-section { max-width: calc((100svh - 380px) * 3.2 + 24px); }
+}
+
+@media (max-width: 520px) {
+  .about-page .about-photo-section { grid-template-columns: 1fr; gap: 28px; }
+  .about-page .about-field-photo { width: 100%; margin-left: 0; }
+  .about-page .about-photo-number { display: none; }
+  .about-page .about-practices { padding-top: 0; }
+  html[lang="zh-CN"] .about-page :is(.about-chapter h2, .about-practices > h2) { font-size: 28px; }
+}
