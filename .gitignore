@@ -7,3 +7,7 @@ node_modules/
 /outputs/
 CHECKPOINT_LOG.md
 *.log
+/kimi/
+/downloads/
+/images/kimi-case-preview.jpg
+/_astro/kimi.D7sUYWwf.css

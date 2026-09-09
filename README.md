@@ -12,11 +12,11 @@
 
 ## 文件说明
 
-- `index.html`、`work/`、`writing/`、`about/`、`kimi/`：页面内容。
+- `index.html`、`work/`、`writing/`、`about/`：页面内容。
 - `refinements/`：页面样式与交互，包括相册画框、粒子预览、标题反馈和滚动停靠。
 - `ansyn-patch.css`、`ansyn-patch.js`：预览适配代码。
 - `_astro/`：原预览的构建资源，其中部分交互已适配。
-- `images/`、`media/`、`fonts/`、`downloads/`：网站使用的素材与文件。
+- `images/`、`media/`、`fonts/`：网站使用的素材与文件。
 
 VOIDTYPE 交互基于 [7-an/voidtype](https://github.com/7-an/voidtype/)，相关许可见 `refinements/voidtype-notices.txt`。
 
