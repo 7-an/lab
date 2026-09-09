@@ -1,0 +1,49 @@
+/* Shared expressive accents. Navigation, content and scroll each retain one owner. */
+:root{--electric:#3164ff;--night:#152039}
+.page-transition-screen,.page-transition-curve i{background:#172343}
+.page-transition-screen::after{content:'';position:absolute;inset:0 0 auto;height:8px;background:#3164ff}
+.page-transition .page-transition-label{font-family:Poppins,var(--sans);font-weight:400;letter-spacing:-.045em}
+.page-transition .page-transition-label>span:first-child{background:#5e8aff;border-radius:1px;transform:rotate(45deg)}
+.writing-folio{transform:perspective(900px) rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg));transition:transform 550ms cubic-bezier(.19,1,.22,1)}
+.writing-folio-sheet,.writing-folio-cover{transition:transform 700ms cubic-bezier(.19,1,.22,1)}
+.writing-folio-cover{box-shadow:12px 24px 36px #20438922;animation:folio-drift 8s ease-in-out infinite}
+.writing-folio:hover .writing-folio-sheet:first-child{transform:translateX(-20%) rotate(-20deg)}
+.writing-folio:hover .writing-folio-sheet:nth-child(2){transform:translateX(-8%) rotate(-10deg)}
+.writing-folio:hover .writing-folio-cover{animation-play-state:paused;transform:translateX(8%) rotate(10deg)}
+@keyframes folio-drift{0%,100%{transform:rotate(4deg) translateY(0)}50%{transform:rotate(7deg) translateY(-8px)}}
+.about-page .about-intro{position:relative}
+.about-page .about-title-block{grid-column:1;grid-row:1;margin-bottom:10svh}
+.about-page .about-intro-copy{grid-column:2;grid-row:1;align-self:end;margin-bottom:50px}
+.about-mark{position:absolute;right:clamp(84px,14vw,260px);top:clamp(118px,17svh,180px);width:clamp(156px,16vw,220px);aspect-ratio:1;perspective:800px;transform:rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg));transition:transform 550ms cubic-bezier(.19,1,.22,1)}
+.about-orbit-ring{position:absolute;inset:4%;border:1px solid #3164ff;border-radius:50%;transform:rotate(-28deg) scaleY(.52);animation:orbit-roll 16s linear infinite}
+.about-orbit-ring::after{content:'';position:absolute;left:12%;top:10%;width:14px;height:14px;border-radius:50%;background:#3164ff;box-shadow:0 0 0 5px #e5edff}
+.about-orbit-ring.is-cross{transform:rotate(62deg) scaleY(.52);animation-delay:-8s;animation-duration:20s}
+.about-orbit-ring.is-cross::after{width:8px;height:8px;background:#7b9aff}
+.about-orbit-face{position:absolute;inset:23%;border-radius:50%;background:#e6edff;display:grid;place-items:center;transform:rotate(-8deg);transition:transform 500ms cubic-bezier(.19,1,.22,1)}
+.about-orbit-face img{width:86%;height:86%;object-fit:contain}
+.about-mark:hover .about-orbit-face{transform:rotate(8deg) scale(1.08)}
+.about-orbit-caption{position:absolute;top:100%;left:0;width:100%;text-align:center;font:10px/1.5 var(--mono);letter-spacing:.14em;color:#3164ff}
+@keyframes orbit-roll{0%{transform:rotate(-28deg) scaleY(.52)}100%{transform:rotate(332deg) scaleY(.52)}}
+.about-page .about-practice-grid article{position:relative}
+.about-page .about-practice-grid article::before{content:'';position:absolute;inset:-16px -18px;background:#eaf0ff;opacity:0;transform:translateY(8px);transition:opacity 300ms,transform 450ms cubic-bezier(.19,1,.22,1);pointer-events:none;z-index:-1}
+.about-page .about-practice-grid{isolation:isolate}
+.about-page .about-practice-grid article:hover::before{opacity:1;transform:translateY(0)}
+.about-page .about-practice-grid article:hover h3{color:#2554df}
+.about-page .about-practice-grid h3{transition:color 250ms}
+.about-page .about-image-window img{transition:transform 700ms cubic-bezier(.19,1,.22,1)}
+@media(hover:hover) and (pointer:fine){.about-page .about-image-window:hover img{transform:scale(1.035)}}
+.motion-rest :is(.writing-folio-cover,.about-orbit-ring),html[data-document-hidden] :is(.writing-folio-cover,.about-orbit-ring,.hero-scanline::after){animation-play-state:paused}
+.motion-rest.work-emblem i::after,html[data-document-hidden] .work-emblem i::after{animation-play-state:paused}
+@media(max-width:760px){
+.about-page .about-title-block,.about-page .about-intro-copy{grid-column:1;grid-row:auto;margin-bottom:0}
+.about-mark{position:relative;inset:auto;grid-column:1;grid-row:2;width:160px;justify-self:end;margin:-14px 6px 24px}
+.about-page .about-intro-copy{grid-row:3}
+.about-page .about-chapter-nav{grid-row:4}
+}
+@media(min-width:761px) and (max-height:640px){.about-mark{top:98px;width:138px}.about-page .about-intro-copy{margin-bottom:26px}}
+@media(prefers-reduced-motion:reduce){
+.writing-folio,.about-mark{transform:none;transition:none}
+.writing-folio-cover,.about-orbit-ring{animation:none}
+}
+html[data-reduced] :is(.writing-folio-cover,.about-orbit-ring){animation:none}
+html[data-reduced] :is(.writing-folio,.about-mark){transform:none;transition:none}

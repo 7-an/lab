@@ -1,3 +1,4 @@
+function T(){const q=window.matchMedia("(prefers-reduced-motion: reduce)"),A=window.matchMedia("(min-width: 834px)"),x=()=>q.matches||document.documentElement.hasAttribute("data-reduced");document.querySelectorAll("[data-project-rows]").forEach(C=>{C.querySelectorAll(".prow").forEach(e=>{const r=e.querySelector("[data-preview-toggle]"),k=e.querySelector("[data-row-control]"),a=e.querySelector(".pcell-preview"),m=e.querySelector(".pcell-info"),g=[a,m,...e.querySelectorAll(".pcell-ph")],$=[...m.querySelectorAll(".pstrip, .pinfo")],M=[...e.querySelectorAll("[data-preview-image]")],R=[...e.querySelectorAll("[data-thumb]")];let c=[],f=0,y=0;const v=a.querySelector(".pstrip-main"),E=v.textContent??"",o=()=>{cancelAnimationFrame(y),v.textContent=E},B=()=>{if(o(),x()||e.classList.contains("is-open"))return;const t=performance.now(),i="01/—+*:",n=p=>{const u=Math.min((p-t)/320,1);v.textContent=[...E].map((l,h)=>h/E.length<u||l===" "?l:i[(h+Math.floor((p-t)/45))%i.length]).join(""),u<1?y=requestAnimationFrame(n):o()};y=requestAnimationFrame(n)};a.addEventListener("pointerenter",t=>{if(t.pointerType==="touch")return;const i=a.getBoundingClientRect();a.dataset.entry=t.clientY>i.top+i.height/2?"bottom":"top",B()}),a.addEventListener("pointerleave",o),r.addEventListener("focus",B),r.addEventListener("blur",o);const P=t=>{M.forEach((i,n)=>i.classList.toggle("is-active",n===t)),R.forEach((i,n)=>{i.classList.toggle("is-active",n===t),i.setAttribute("aria-pressed",String(n===t))})};R.forEach((t,i)=>t.addEventListener("click",()=>P(i)));const b=()=>{c.forEach(t=>t.cancel()),c=[],e.classList.remove("is-animating")},L=t=>{const i=++f,n=g.map(s=>s.getBoundingClientRect()),p=e.getBoundingClientRect().height,u=$.map(s=>getComputedStyle(s).opacity);if(b(),o(),e.classList.toggle("is-open",t),r.setAttribute("aria-expanded",String(t)),k.setAttribute("aria-expanded",String(t)),m.inert=!t,x())return;const l=g.map(s=>s.getBoundingClientRect()),h=e.getBoundingClientRect().height,F=A.matches?700:500,S={duration:F,delay:t?0:200,easing:"cubic-bezier(.87,0,.13,1)",fill:"both"};e.classList.add("is-animating"),c.push(a.animate([{left:`${n[0].left-l[0].left}px`,width:`${n[0].width}px`},{left:"0px",width:`${l[0].width}px`}],S),e.animate([{height:`${p}px`},{height:`${h}px`}],S)),A.matches&&g.slice(1).forEach((s,d)=>{const j=Number(e.dataset.layout)<2?1:-1,O=d>0&&t?j*C.clientWidth:0;c.push(s.animate([{transform:`translateX(${n[d+1].left-l[d+1].left}px)`},{transform:`translateX(${O}px)`}],S))}),$.forEach((s,d)=>c.push(s.animate([{opacity:u[d],visibility:"visible"},{opacity:t?1:0,visibility:"visible"}],{duration:t?350:200,delay:t?F:0,fill:"both",easing:"ease"}))),Promise.allSettled(c.map(s=>s.finished)).then(()=>{i===f&&b()})};r.addEventListener("click",()=>L(!e.classList.contains("is-open"))),k.addEventListener("click",()=>L(!e.classList.contains("is-open"))),e.addEventListener("keydown",t=>{t.key==="Escape"&&e.classList.contains("is-open")&&(t.preventDefault(),L(!1),r.focus({preventScroll:!0}))});const w=()=>{++f,b(),o()};window.addEventListener("resize",w,{passive:!0}),q.addEventListener("change",w)})})}T();
 /* CSS owns the regular grid; this controller owns interactive project media. */
 (() => {
   const grid = document.querySelector('.showcase .prows-inner');
@@ -14,22 +15,4 @@
     }, { rootMargin: '80px' });
     observer.observe(wordmark);
   }
-  const rows = [...grid.querySelectorAll('.prow')];
-
-  rows.forEach(row => {
-    const images = [...row.querySelectorAll('[data-preview-image]')];
-    const thumbs = [...row.querySelectorAll('[data-thumb]')];
-    thumbs.forEach((thumb, selected) => {
-      thumb.addEventListener('click', () => {
-        images.forEach((image, index) => {
-          image.classList.toggle('is-active', index === selected);
-          image.setAttribute('aria-hidden', String(index !== selected));
-        });
-        thumbs.forEach((button, index) => {
-          button.classList.toggle('is-active', index === selected);
-          button.setAttribute('aria-pressed', String(index === selected));
-        });
-      });
-    });
-  });
 })();

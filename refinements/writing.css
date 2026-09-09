@@ -1,367 +1,100 @@
-/* Writing: a quiet opening, followed by an always-readable editorial index. */
-.writing-page .writing-shell {
-  width: 84%;
-  max-width: 1440px;
+/* One full-screen opening; a text-led archive with contextual pointer/focus previews. */
+.writing-page .writing-shell{width:89.6%;max-width:1600px}
+.writing-page .writing-hero{box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,27%);grid-template-rows:auto 1fr auto;gap:0 5vw;min-height:100svh;padding-top:clamp(132px,18svh,184px);padding-bottom:clamp(48px,7svh,80px)}
+.writing-page .writing-kicker{grid-column:1/-1;margin:0;font-size:12px;font-weight:400;letter-spacing:.07em}
+.writing-page .writing-kicker::before{content:'';display:inline-block;width:7px;height:7px;margin-right:12px;background:#3164ff;vertical-align:1px;transform:rotate(45deg)}
+.writing-page .writing-hero h1{grid-column:1;grid-row:2;align-self:center;margin:36px 0 42px;font-family:Poppins,var(--sans);font-size:clamp(48px,6.2vw,104px);font-weight:400;line-height:1.08;letter-spacing:-.065em}
+.writing-page .writing-hero h1>span,.writing-page .writing-intro p>span{display:block}
+html[lang="zh-CN"] .writing-page .writing-hero h1{font-family:var(--cjk);font-size:clamp(38px,5vw,80px)!important;font-weight:500!important;line-height:1.3!important;letter-spacing:-.035em!important}
+.writing-page .writing-intro{grid-column:1/-1;align-items:flex-end;gap:32px;margin:0}
+.writing-page .writing-hero .writing-intro p{max-width:48em;font-size:clamp(14px,1.1vw,17px);line-height:1.8;color:#596274}
+.writing-page .writing-hero-link{display:inline-flex;flex-shrink:0;align-items:center;gap:12px;min-height:44px;color:#273754;font-size:13px;border:0;text-decoration:none;transition:color 200ms}
+.writing-page .writing-hero-link::after{content:'↓';color:#3164ff;transition:transform 300ms}
+.writing-page .writing-hero-link:hover{color:#2554df}
+.writing-page .writing-hero-link:hover::after{transform:translateY(5px)}
+.writing-folio{position:relative;grid-column:2;grid-row:2;align-self:center;aspect-ratio:4/5;width:100%;max-width:300px;justify-self:end;isolation:isolate}
+.writing-folio-sheet{position:absolute;inset:10% 5% 10% 8%;background:#f2f4fa;border:1px solid #b7c6ed;transform:rotate(-8deg)}
+.writing-folio-sheet:nth-child(2){background:#e2e9fc;transform:rotate(-3deg)}
+.writing-folio-cover{position:absolute;inset:10% 5% 10% 8%;background:#3164ff;color:#fdfdfd;transform:rotate(4deg);padding:10% 9%;overflow:hidden}
+.writing-folio-cover::before{content:'';position:absolute;right:0;top:0;border-top:36px solid var(--paper);border-left:36px solid #a9c0ff}
+.writing-folio-cover::after{content:'';position:absolute;left:10%;right:10%;bottom:15%;height:25%;background:repeating-linear-gradient(to bottom,transparent 0,transparent 16px,#ffffff50 16px,#ffffff50 17px)}
+.writing-folio-mark{display:block;font:400 clamp(112px,15vw,220px)/.9 Georgia,serif;margin-top:12%}
+.writing-folio-label{position:absolute;left:10%;bottom:6%;font:10px/1.4 var(--sans);letter-spacing:.1em}
+.writing-folio[data-mask]::after{background:var(--paper);inset:-5%}
+.writing-page .writing-archive{padding-top:40px;scroll-margin-top:96px}
+.writing-page .writing-tools{align-items:center;padding-bottom:18px;border-bottom-color:#c7d0e1}
+.writing-page .writing-platforms{gap:24px}
+.writing-page .writing-platforms button{padding-inline:0!important;font-size:14px}
+.writing-page .writing-platforms button::after{bottom:-19px;background:#3164ff}
+.writing-page .writing-category select{min-height:44px;max-width:240px;padding:8px 26px 8px 12px;color:#596274;font-size:13px}
+.writing-page .writing-columns{display:block}
+.writing-page .writing-index-label{padding:26px 0 4px;font-size:11px;font-variant-numeric:tabular-nums;color:#717b8d}
+.writing-page .writing-entry{display:grid;grid-template-columns:30px minmax(0,1fr);gap:clamp(16px,2vw,28px);padding:30px 0;border-bottom:1px solid #dce1ec;scroll-margin-top:100px}
+.writing-page .writing-entry[hidden]{display:none}
+.writing-page .writing-number{padding-top:1px;font-size:11px!important;font-variant-numeric:tabular-nums}
+.writing-page .writing-entry-body{display:block;min-width:0}
+.writing-page .writing-meta{justify-content:flex-start;gap:8px 20px;font-size:11px;font-variant-numeric:tabular-nums;color:#717b8d}
+.writing-page .writing-entry h2{margin:12px 0 0;max-width:32em;font-family:var(--cjk,var(--sans));font-size:clamp(21px,2vw,30px);font-weight:500;line-height:1.5!important;letter-spacing:0!important;text-wrap:pretty;transform:none!important}
+.writing-page .writing-entry h2 a,.writing-page .writing-entry h2 a:visited{color:var(--ink);font-weight:inherit;text-decoration:none;text-shadow:0 0 0 transparent;transition:color 200ms,text-shadow 200ms}
+.writing-page .writing-entry.is-active h2 a,.writing-page .writing-entry h2 a:focus-visible{color:#2554df;text-shadow:.25px 0 0 currentColor,-.25px 0 0 currentColor}
+.writing-page .writing-entry.is-active .writing-number{color:#2554df}
+.writing-page .writing-entry h2 a:focus-visible{outline:2px solid #3164ff;outline-offset:5px}
+.writing-page .writing-summary{margin:12px 0 0;font-size:14px;line-height:1.8;color:#626b7b}
+.writing-page .writing-inline-media{display:block;max-width:400px;margin:18px 0 0}
+.writing-page .writing-media-link{display:block;aspect-ratio:16/10;overflow:hidden;background:#edf0f5}
+.writing-page .writing-inline-media img{display:block;width:100%;height:100%;max-height:none;aspect-ratio:16/10;object-fit:contain}
+.writing-page .writing-inline-media img[src*="city-field"]{object-fit:cover}
+.writing-page .writing-inline-media figcaption{margin-top:8px;font-size:11px;line-height:1.6}
+.writing-page .writing-entry-actions{display:flex;align-items:center;flex-wrap:wrap;gap:0 24px;margin-top:12px}
+.writing-page .writing-entry-actions .writing-source,.writing-page .writing-entry-actions .ansyn-xlink{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0;border:0;color:#626b7b!important;font:400 12px/1.6 var(--sans);letter-spacing:0;text-decoration:none;transition:color 200ms}
+.writing-page .writing-entry-actions a:hover{color:#2554df!important}
+.writing-page .writing-index-end{max-width:none;margin-top:32px;font-family:var(--sans);letter-spacing:0}
+.writing-page .writing-preview-rail{display:none}
+@media(min-width:760px) and (hover:hover) and (pointer:fine){
+.writing-page .writing-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,34%);gap:8%}
+.writing-page .writing-preview-rail{display:block;padding-top:78px;min-width:0}
+.writing-page .writing-preview-hint{padding-left:16px;border-left:3px solid #3164ff;font:12px/1.6 var(--mono);color:#596274}
+.writing-page .writing-preview{background:#edf2ff;border:1px solid #cbd8f5;padding:clamp(20px,2vw,32px);box-shadow:12px 16px 0 #e6ecf780;opacity:0;transform:translateY(22px) rotate(2deg);transition:opacity 260ms,transform 550ms cubic-bezier(.19,1,.22,1)}
+.writing-page .writing-preview.is-visible{opacity:1;transform:translateY(0) rotate(-1deg)}
+.writing-page .writing-preview-meta,.writing-page .writing-preview-foot{color:#435777;font-size:11px}
+.writing-page .writing-preview-meta{border-bottom-color:#c0d0f0}
+.writing-page .writing-preview-media{margin-top:20px;aspect-ratio:16/10;background:#e1e8f5}
+.writing-page .writing-preview-media[hidden]{display:none}
+.writing-page .writing-preview-media img{width:100%;height:100%;max-height:none;object-fit:contain}
+.writing-page .writing-preview-media img[src*="city-field"]{object-fit:cover}
+.writing-page .writing-preview-media figcaption{display:none}
+.writing-page .writing-preview-category{font-size:11px;color:#2554df}
+.writing-page .writing-preview-text{font-size:17px;line-height:1.8;letter-spacing:0;color:#273754}
+.writing-page .writing-preview.has-media .writing-preview-text{font-size:14px;line-height:1.8}
+.writing-page .writing-preview-foot{align-items:center;gap:14px;margin-top:24px}
+.writing-page .writing-preview-foot a{display:inline-flex;min-height:44px;align-items:center;color:#2554df;text-decoration:none}
+.writing-page .writing-preview-foot a:hover{color:#142851}
+.writing-page .writing-preview-foot [hidden]{display:none}
+.writing-page[data-writing-enhanced] .writing-summary{position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip-path:inset(50%)}
+.writing-page .writing-inline-media{display:none}
 }
-
-.writing-page .writing-hero {
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: minmax(0,1fr) minmax(200px,29%);
-  grid-template-rows: auto 1fr auto;
-  column-gap: 32px;
-  min-height: 100svh;
-  padding-top: clamp(136px, 18svh, 200px);
-  padding-bottom: clamp(64px, 9svh, 104px);
+@media(max-width:760px){
+.writing-page .writing-shell{width:auto;margin-inline:24px}
+.writing-page .writing-hero{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;min-height:0;padding:132px 0 48px}
+.writing-page .writing-hero h1{margin:38px 0;font-size:clamp(38px,9.5vw,64px);line-height:1.12;letter-spacing:-.06em}
+.writing-folio{grid-column:1;grid-row:auto;width:155px;margin:-4px 8px 34px 0}
+.writing-folio-mark{font-size:108px}
+.writing-folio-label{font-size:8px;letter-spacing:.07em;white-space:nowrap}
+.writing-folio-cover::before{border-top-width:24px;border-left-width:24px}
+html[lang="zh-CN"] .writing-page .writing-hero h1{font-size:clamp(36px,9.5vw,60px)!important}
+.writing-page .writing-intro{display:grid;gap:20px}
+.writing-page .writing-hero .writing-intro p{font-size:14px}
+.writing-page .writing-intro p>span{display:inline}
+.writing-page .writing-intro p>span+span::before{content:' '}
+.writing-page .writing-hero-link{justify-self:start}
+.writing-page .writing-archive{padding-top:24px}
+.writing-page .writing-platforms{gap:20px}
+.writing-page .writing-platforms button{font-size:13px}
+.writing-page .writing-category select{max-width:132px;padding-left:0;font-size:12px}
+.writing-page .writing-entry{grid-template-columns:20px minmax(0,1fr);gap:12px;padding-block:28px}
+.writing-page .writing-entry h2{font-size:21px}
+.writing-page .writing-meta{font-size:10px;gap:6px 14px}
+.writing-page .writing-entry-actions{gap:0 18px}
 }
-
-.writing-page .writing-kicker {
-  grid-column: 1/-1;
-  margin: 0;
-  font-weight: 400;
-  letter-spacing: .06em;
-}
-
-.writing-page .writing-hero h1 {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: center;
-  margin: 42px 0 48px;
-  font-family: Poppins, var(--sans);
-  font-size: clamp(60px, 6.3vw, 108px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -.065em;
-}
-
-.writing-page .writing-hero h1 > span,
-.writing-page .writing-intro p > span {
-  display: block;
-}
-
-html[lang="zh-CN"] .writing-page .writing-hero h1 {
-  font-size: clamp(64px, 6.65vw, 104px) !important;
-  font-weight: 500 !important;
-  line-height: 1.23 !important;
-  letter-spacing: -.035em !important;
-  text-wrap: nowrap;
-}
-
-.writing-page .writing-intro {
-  grid-column: 1/-1;
-  align-items: flex-end;
-  gap: 32px;
-  margin: 0;
-}
-
-.writing-page .writing-intro p {
-  max-width: 48em;
-  font-size: clamp(14px, 1.1vw, 17px);
-  line-height: 1.85;
-  color: #5d5d5d;
-}
-
-.writing-page .writing-hero-link {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  min-height: 44px;
-  border-bottom: 1px solid #a9a9a9;
-  color: var(--ink);
-  font-size: 13px;
-}
-
-.writing-page .writing-hero-link:hover {
-  color: #2554df;
-  border-color: #3164ff;
-}
-
-/* A folded field notebook: one blue object, not another block of headlines. */
-.writing-folio { position: relative; grid-column: 2; grid-row: 2; align-self: center; aspect-ratio: 4/5; width: 100%; max-width: 320px; justify-self: end; isolation: isolate; }
-.writing-folio-sheet { position: absolute; inset: 10% 5% 10% 8%; background: #f2f4fa; border: 1px solid #b7c6ed; transform: rotate(-8deg); }
-.writing-folio-sheet:nth-child(2) { background: #e2e9fc; transform: rotate(-3deg); }
-.writing-folio-cover { position: absolute; inset: 10% 5% 10% 8%; background: #3164ff; color: #fdfdfd; transform: rotate(4deg); padding: 10% 9%; overflow: hidden; }
-.writing-folio-cover::before { content: ''; position: absolute; right: 0; top: 0; border-top: 36px solid var(--paper); border-left: 36px solid #a9c0ff; }
-.writing-folio-cover::after { content: ''; position: absolute; left: 10%; right: 10%; bottom: 15%; height: 25%; background: repeating-linear-gradient(to bottom,transparent 0,transparent 16px,#ffffff50 16px,#ffffff50 17px); }
-.writing-folio-mark { display: block; font: 400 clamp(112px,15vw,220px)/.9 Georgia,serif; margin-top: 12%; }
-.writing-folio-label { position: absolute; left: 10%; bottom: 6%; font: 10px/1.4 var(--sans); letter-spacing: .1em; }
-.writing-folio[data-mask]::after { background: var(--paper); inset: -5%; }
-.writing-page .writing-kicker::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 12px; background: #3164ff; border-radius: 50%; vertical-align: 2px; }
-
-@media (min-width: 900px) {
-  .writing-page .writing-archive { padding-top: 100px; }
-}
-@media (max-width: 1000px) and (min-width: 641px) {
-  .writing-page .writing-hero { grid-template-columns: minmax(0,1fr) 24%; column-gap: 22px; }
-  .writing-page .writing-hero h1 { font-size: 6.2vw; }
-  .writing-folio-mark { font-size: 15vw; }
-}
-
-.writing-page .writing-archive {
-  padding-top: 32px;
-  scroll-margin-top: 104px;
-}
-
-.writing-page .writing-tools {
-  align-items: center;
-  padding-bottom: 18px;
-  border-bottom-color: #cacaca;
-}
-
-.writing-page .writing-platforms {
-  gap: 24px;
-}
-
-.writing-page .writing-platforms button {
-  padding-inline: 0 !important;
-  font-size: 14px;
-}
-
-.writing-page .writing-platforms button::after {
-  bottom: -19px;
-}
-
-.writing-page .writing-category select {
-  min-height: 44px;
-  max-width: 240px;
-  padding: 8px 26px 8px 12px;
-  color: #575757;
-  font-size: 13px;
-}
-
-.writing-page .writing-columns {
-  display: block;
-}
-
-.writing-page .writing-index-label {
-  padding-top: 26px;
-  padding-bottom: 4px;
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  color: #717171;
-}
-
-.writing-page .writing-entry {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
-  gap: clamp(16px, 2.5vw, 40px);
-  padding: 34px 0;
-  border-bottom: 1px solid #dedede;
-  scroll-margin-top: 100px;
-}
-
-.writing-page .writing-entry[hidden] {
-  display: none;
-}
-
-.writing-page .writing-number {
-  padding-top: 1px;
-  font-size: 11px !important;
-  font-variant-numeric: tabular-nums;
-}
-
-.writing-page .writing-entry-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(168px, 20vw, 256px);
-  column-gap: clamp(32px, 5vw, 80px);
-  align-items: start;
-  min-width: 0;
-}
-
-.writing-page .writing-meta {
-  grid-column: 1;
-  grid-row: 1;
-  justify-content: flex-start;
-  gap: 8px 20px;
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  color: #717171;
-}
-
-.writing-page .writing-entry h2 {
-  grid-column: 1;
-  grid-row: 2;
-  margin: 14px 0 0;
-  max-width: 32em;
-  font-family: var(--cjk, var(--sans));
-  font-size: clamp(21px, 1.85vw, 28px);
-  font-weight: 500;
-  line-height: 1.5 !important;
-  letter-spacing: 0 !important;
-  text-wrap: pretty;
-  transform: none !important;
-}
-
-.writing-page .writing-entry h2 a {
-  color: var(--ink);
-  font-weight: inherit;
-  text-decoration: none;
-  text-shadow: 0 0 0 transparent;
-  transition: color 160ms cubic-bezier(.25,1,.5,1), text-shadow 160ms cubic-bezier(.25,1,.5,1);
-}
-
-.writing-page .writing-entry h2 a:visited {
-  color: var(--ink);
-}
-
-/* A little more ink, without changing font metrics or moving adjacent text. */
-@media (hover: hover) and (pointer: fine) {
-  .writing-page .writing-entry h2 a:hover {
-    color: #2554df;
-    text-shadow: .25px 0 0 currentColor, -.25px 0 0 currentColor;
-  }
-  .writing-page .writing-entry:has(h2 a:hover) .writing-number { color: #2554df; }
-}
-
-.writing-page .writing-entry h2 a:focus-visible {
-  color: #2554df;
-  text-shadow: .25px 0 0 currentColor, -.25px 0 0 currentColor;
-  outline: 2px solid #3164ff;
-  outline-offset: 5px;
-}
-
-.writing-page .writing-entry:has(h2 a:focus-visible) .writing-number { color: #2554df; }
-
-html[data-reduced] .writing-page .writing-entry h2 a { transition: none; }
-@media (prefers-reduced-motion: reduce) {
-  .writing-page .writing-entry h2 a { transition: none; }
-}
-
-.writing-page[data-writing-enhanced] .writing-summary {
-  grid-column: 1;
-  grid-row: 3;
-  max-width: 62ch;
-  margin-top: 12px !important;
-  font-size: 14px !important;
-  line-height: 1.8 !important;
-  color: #626262 !important;
-  -webkit-line-clamp: 2;
-}
-
-.writing-page .writing-inline-media {
-  display: block;
-  grid-column: 2;
-  grid-row: 1 / 5;
-  align-self: start;
-  width: 100%;
-  margin: 0;
-}
-
-.writing-page .writing-media-link { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #ededeb; }
-.writing-page .writing-inline-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-height: none;
-  aspect-ratio: 16 / 10;
-  object-fit: contain;
-}
-.writing-page .writing-inline-media img[src*="leaving-shenzhen"] { object-fit: cover; }
-
-.writing-page .writing-inline-media figcaption {
-  margin-top: 8px;
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-.writing-page .writing-entry-actions {
-  display: flex;
-  grid-column: 1;
-  grid-row: 4;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0 24px;
-  margin-top: 12px;
-}
-
-.writing-page .writing-entry-actions .writing-source,
-.writing-page .writing-entry-actions .ansyn-xlink {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  color: #666 !important;
-  font: 400 12px/1.6 var(--sans);
-  letter-spacing: 0;
-  text-decoration-line: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 4px;
-}
-
-.writing-page .writing-entry-actions a:hover {
-  color: var(--ink) !important;
-  text-decoration-color: #898989;
-}
-
-.writing-page .is-pending .writing-source {
-  color: #717171 !important;
-}
-
-.writing-page .writing-index-end {
-  max-width: none;
-  margin-top: 32px;
-  font-family: var(--sans);
-  letter-spacing: 0;
-}
-
-@media (max-width: 900px) {
-  .writing-page .writing-shell { width: 88%; }
-  .writing-page .writing-entry-body {
-    grid-template-columns: minmax(0, 1fr) 176px;
-    column-gap: 28px;
-  }
-  .writing-page .writing-intro p > span { display: inline; }
-  .writing-page .writing-intro p > span + span::before { content: " "; }
-}
-
-@media (max-width: 640px) {
-  .writing-page .writing-shell { width: auto; margin-inline: 24px; }
-  .writing-page .writing-hero {
-    grid-template-columns: minmax(0,1fr);
-    min-height: 0;
-    grid-template-rows: auto;
-    padding-top: 132px;
-    padding-bottom: 48px;
-  }
-  .writing-page .writing-hero h1 {
-    margin: 38px 0;
-    font-size: clamp(36px, 10.5vw, 64px);
-    line-height: 1.12;
-    letter-spacing: -.06em;
-  }
-  .writing-folio { grid-column: 1; grid-row: auto; width: 150px; margin: -4px 8px 30px 0; }
-  .writing-folio-mark { font-size: 104px; }
-  .writing-folio-cover::before { border-top-width: 24px; border-left-width: 24px; }
-  html[lang="zh-CN"] .writing-page .writing-hero h1 {
-    font-size: clamp(52px, 14vw, 76px) !important;
-  }
-  .writing-page .writing-intro {
-    display: grid;
-    gap: 20px;
-  }
-  .writing-page .writing-intro p { font-size: 14px; }
-  .writing-page .writing-hero-link { justify-self: start; }
-  .writing-page .writing-archive { padding-top: 24px; }
-  .writing-page .writing-platforms { gap: 20px; }
-  .writing-page .writing-platforms button { font-size: 13px; }
-  .writing-page .writing-category select { max-width: 132px; padding-left: 0; font-size: 12px; }
-  .writing-page .writing-entry {
-    grid-template-columns: 20px minmax(0, 1fr);
-    gap: 12px;
-    padding-block: 28px;
-  }
-  .writing-page .writing-entry-body { grid-template-columns: minmax(0, 1fr); }
-  .writing-page .writing-entry h2 { margin-top: 12px; font-size: 21px; }
-  .writing-page .writing-meta { font-size: 10px; gap: 6px 14px; }
-  .writing-page .writing-inline-media {
-    grid-column: 1;
-    grid-row: 4;
-    max-width: 280px;
-    margin-top: 18px;
-  }
-  .writing-page .writing-entry-actions { grid-row: 5; gap: 0 18px; }
-  .writing-page .writing-entry-actions .writing-source,
-  .writing-page .writing-entry-actions .ansyn-xlink { min-height: 44px; }
-}
+@media(prefers-reduced-motion:reduce){.writing-page .writing-preview,.writing-page .writing-preview.is-visible{transform:none;transition:none}}
+html[data-reduced] .writing-page .writing-preview,html[data-reduced] .writing-page .writing-preview.is-visible{transform:none;transition:none}
