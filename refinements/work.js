@@ -16,3 +16,96 @@ function T(){const q=window.matchMedia("(prefers-reduced-motion: reduce)"),A=win
     observer.observe(wordmark);
   }
 })();
+
+/* Work-stage decoration; expansion, links and the particle renderer keep their owners. */
+(() => {
+  const stage = document.querySelector('.showcase');
+  if (!stage) return;
+  const root = document.documentElement;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const pointer = matchMedia('(min-width: 834px) and (hover:hover) and (pointer:fine)');
+  const reduced = () => motion.matches || root.hasAttribute('data-reduced');
+  const rows = [...stage.querySelectorAll('[data-project-rows] .prow')];
+  const count = stage.querySelector('[data-work-count]');
+  if (count) count.textContent = String(rows.length).padStart(2, '0');
+  const states = [];
+  const clear = state => {
+    cancelAnimationFrame(state.frame);
+    state.frame = 0;
+    state.row.classList.remove('is-aimed');
+    for (const key of ['depth-x','depth-y','pitch','yaw','image-x','image-y','track-x','track-y']) {
+      state.row.style.removeProperty('--'+key);
+    }
+  };
+  rows.forEach((row, index) => {
+    const serial = String(index+1).padStart(2, '0');
+    const number = document.createElement('span');
+    number.className = 'work-row-number';
+    number.textContent = serial;
+    const label = document.createElement('span');
+    label.className = 'work-row-index';
+    label.dataset.preserveLanguage = '';
+    label.textContent = serial+' / '+String(rows.length).padStart(2, '0');
+    row.querySelector('.ph-a .pbox')?.append(number, label);
+    const orbit = document.createElement('span');
+    orbit.className = 'work-cell-orbit';
+    for (let i=0; i<3; i++) orbit.append(document.createElement('i'));
+    row.querySelector('.ph-b .pbox')?.append(orbit);
+    const tracker = document.createElement('span');
+    tracker.className = 'work-row-tracker';
+    tracker.setAttribute('aria-hidden', 'true');
+    row.append(tracker);
+    const state = {row,frame:0,x:0,y:0};
+    states.push(state);
+    row.addEventListener('pointermove', event => {
+      if (!pointer.matches || reduced() || event.pointerType !== 'mouse') return;
+      state.x = event.clientX;
+      state.y = event.clientY;
+      if (state.frame) return;
+      state.frame = requestAnimationFrame(() => {
+        state.frame = 0;
+        const box = row.getBoundingClientRect();
+        const x = Math.max(0, Math.min(box.width, state.x-box.left));
+        const y = Math.max(0, Math.min(box.height, state.y-box.top));
+        const dx = x/Math.max(box.width,1)-.5;
+        const dy = y/Math.max(box.height,1)-.5;
+        row.style.setProperty('--track-x',x+'px');
+        row.style.setProperty('--track-y',y+'px');
+        row.style.setProperty('--depth-x',dx*20+'px');
+        row.style.setProperty('--depth-y',dy*12+'px');
+        row.style.setProperty('--yaw',dx*38+'deg');
+        row.style.setProperty('--pitch',-dy*28+'deg');
+        row.style.setProperty('--image-x',dx*5+'px');
+        row.style.setProperty('--image-y',dy*4+'px');
+        row.classList.add('is-aimed');
+      });
+    }, {passive:true});
+    row.addEventListener('pointerleave', () => clear(state));
+  });
+
+  const future = stage.querySelector('.future-row');
+  const toggle = stage.querySelector('[data-work-reel-toggle]');
+  let paused = false;
+  const sync = () => {
+    if (reduced() || !pointer.matches || document.hidden) states.forEach(clear);
+    if (!future || !toggle) return;
+    future.classList.toggle('is-paused', paused || reduced());
+    toggle.hidden = reduced();
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.textContent = root.lang === 'zh-CN'
+      ? (paused ? '继续动效' : '暂停动效')
+      : (paused ? 'Resume animation' : 'Pause animation');
+  };
+  if (future) {
+    new IntersectionObserver(entries => {
+      future.classList.toggle('is-inview', entries[0].isIntersecting);
+    }, {threshold:.15}).observe(future);
+  }
+  toggle?.addEventListener('click', () => { paused = !paused; sync(); });
+  motion.addEventListener('change', sync);
+  pointer.addEventListener('change', sync);
+  new MutationObserver(sync).observe(root, {attributes:true,attributeFilter:['lang','data-reduced']});
+  document.addEventListener('visibilitychange', sync);
+  window.addEventListener('pagehide', () => states.forEach(clear));
+  sync();
+})();

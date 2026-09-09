@@ -9,7 +9,6 @@
 .opening canvas.text-field{opacity:.68}
 .opening .hero-word .strip{text-shadow:.02em 0 0 #fdfdfd}
 .opening .hero-word .strip:nth-child(3){color:#3164ff}
-.opening h1#journey-title{left:5.2%;max-width:31ch;bottom:68px}
 .hero-scanline{position:absolute;z-index:3;inset:0;pointer-events:none;opacity:var(--hero-fade,1);overflow:hidden}
 .hero-scanline::after{content:'';position:absolute;left:0;right:0;top:-8%;height:7%;background:linear-gradient(transparent,#3164ff09 80%,#3164ff45);animation:display-scan 9s cubic-bezier(.2,.6,.2,1) infinite}
 @keyframes display-scan{0%{transform:translateY(0);opacity:0}5%{opacity:.7}27%{transform:translateY(1600%);opacity:.25}28%,100%{transform:translateY(1600%);opacity:0}}
@@ -56,7 +55,6 @@ html[lang="zh-CN"] .home-editorial .directory .index-row .row-heading h3>span{fo
 .opening .word-beta{top:49%;left:6%;font-size:15vw}
 .opening .word-world{top:61%;right:7%;font-size:15vw}
 .opening .word-07{top:73%;left:14%;font-size:15vw}
-.opening h1#journey-title{max-width:calc(100% - 48px);left:24px;bottom:70px;font-size:13px}
 .home-editorial .directory{padding-top:80px}
 .home-editorial .directory-head>span{display:none}
 .home-editorial .index-row{grid-template-columns:20px minmax(0,1fr) 44px;gap:16px;padding-block:28px}

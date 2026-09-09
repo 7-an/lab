@@ -1,9 +1,9 @@
 /* Shared expressive accents. Navigation, content and scroll each retain one owner. */
 :root{--electric:#3164ff;--night:#152039}
-.page-transition-screen,.page-transition-curve i{background:#172343}
-.page-transition-screen::after{content:'';position:absolute;inset:0 0 auto;height:8px;background:#3164ff}
+.page-transition-screen,.page-transition-curve i{background:oklch(18% .006 265)}
+.page-transition-screen::after{content:'';position:absolute;inset:0 0 auto;height:8px;background:oklch(26% .008 265)}
 .page-transition .page-transition-label{font-family:Poppins,var(--sans);font-weight:400;letter-spacing:-.045em}
-.page-transition .page-transition-label>span:first-child{background:#5e8aff;border-radius:1px;transform:rotate(45deg)}
+.page-transition .page-transition-label>span:first-child{background:oklch(84% .008 265);border-radius:1px;transform:rotate(45deg)}
 .writing-folio{transform:perspective(900px) rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg));transition:transform 550ms cubic-bezier(.19,1,.22,1)}
 .writing-folio-sheet,.writing-folio-cover{transition:transform 700ms cubic-bezier(.19,1,.22,1)}
 .writing-folio-cover{box-shadow:12px 24px 36px #20438922;animation:folio-drift 8s ease-in-out infinite}
