@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /ansyn-lab-preview/
+Disallow: /lab/

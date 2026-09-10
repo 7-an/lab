@@ -5,7 +5,7 @@
    源码里应该写进 content collection，这里是给预览用的注入版。
    ============================================================ */
 (function () {
-  var BASE = '/ansyn-lab-preview';
+  var BASE = '/lab';
   var zh = function () { return document.documentElement.lang === 'zh-CN'; };
 
   /* 项目 ↔ 文章 的真实配对 */

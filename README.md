@@ -1,6 +1,6 @@
 # Ansyn Lab · 网页预览
 
-[打开在线预览](https://doublesq97-ui.github.io/ansyn-lab-preview/)
+[打开在线预览](https://7-an.github.io/lab/)
 
 本仓库基于 [7-an/ansyn-lab-preview](https://github.com/7-an/ansyn-lab-preview)，保留原仓库历史，提供可直接运行的静态网页。它不包含完整 Astro 源工程，也不会修改或部署到 ansyn.me。
 
@@ -8,7 +8,7 @@
 
 发布来源为 `main` 分支、根目录 `/`。根目录的 `.nojekyll` 用于保留 `_astro` 等资源目录。本版本无需安装依赖或重新构建，推送到发布分支后即可更新 Pages。
 
-站内资源使用 `/ansyn-lab-preview/` 路径。Fork 后若修改仓库名，或改用自定义域名，需同步调整资源路径、站内链接和网页元信息。Fork 本身不会替新仓库启用 Pages，需在该仓库的 Settings → Pages 中配置发布来源。
+站内资源使用 `/lab/` 路径。Fork 后若修改仓库名，或改用自定义域名，需同步调整资源路径、站内链接和网页元信息。Fork 本身不会替新仓库启用 Pages，需在该仓库的 Settings → Pages 中配置发布来源。
 
 ## 文件说明
 
